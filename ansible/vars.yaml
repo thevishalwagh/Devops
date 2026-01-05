@@ -1,0 +1,6 @@
+packages:
+  - apache2
+  - docker.io
+services:
+  - apache2
+  - docker

@@ -1,0 +1,19 @@
+---
+- name: Create user
+  hosts: ubuntu2
+  become: yes
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Install packages
+      apt:
+        name: "{{packages}}"
+        state: present
+
+    - name: start services
+      service:
+        name: "{{item}}"
+        state: started
+        enabled: yes
+      loop: "{{services}}"
+
