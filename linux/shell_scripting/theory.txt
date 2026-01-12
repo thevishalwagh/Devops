@@ -1,0 +1,63 @@
+Kernal is a core part of linux which provides resources to other components
+
+Shell is a program which interprets scripts or commands for kernal. e.g bash,zsh,ksh,sh etc.
+
+
+#!/bin/bash 
+
+#!-- is called shebang
+
+bash/sh/ksh/dash --->> these are the executeables.
+
+bash is more easy and very popular
+
+sh ---> bash == use of linking concepts (not always linking to bash. sometimes it may be dash or ksh)
+
+-------------------------------------------------------------------------------------------------------
+
+to print use 'echo'.
+  e.g echo "Hello World"
+
+#	------------------------------
+#	How to execute shell script.
+#	------------------------------
+# 	two ways:
+		i. sh filename
+		ii. ./filename
+
+#-----------------
+#IMP commands
+#-----------------
+# touch -- It is used in automation. Used to create empty file
+# chmod -- It is used to change permission.
+#	1 = execute
+#	2 = write
+#	4 = read
+ 
+
+# set -x : debug mode
+# 	it will print the command name and its output. if don't want the user to know which command is running then don't use set -x.
+#
+# set -e : exits the script when there is error.
+
+# set -o pipefail.
+
+these are the best practices. Always your script should exits as soon as there lie an error.
+
+# ps -ef - It is used for checking process
+
+# awk -- to filter out the information from output.
+
+#-------------------------------------------------------------------------------------------------------
+                                        Interview questions
+#-------------------------------------------------------------------------------------------------------
+#1. explain #!bin/bash
+#2. what is output of  date | echo "this" 
+	ans is : this. because date is system command and it sends output as input to stdin but the pipe will not be able to receive information. pipe can retrive info if cmd is not sending info to stdi, if the command is ready to pass info to grep.
+
+3. difference between awk and grep command:
+	awk -- filters the output (gives specific columns from output.)
+	grep -- gives entire statement.
+	
+	e.g ps -ef | grep "pyth" | awk -F " " '{print $2}'
+		grep abc test.s  --- this will print all abc from test.s file
