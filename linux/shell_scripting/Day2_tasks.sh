@@ -1,4 +1,5 @@
-o "--------------------------------------------------------------------------------"
+#!/bin/bash
+echo "-------------------------------------------------------------------------"
 echo "AUTHOR    : $(whoami)"
 echo "DATE      : $(date '+%Y-%m-%d')"
 echo "DIRECTORY : $(pwd)"
@@ -6,6 +7,7 @@ echo "SCRIPT    : $0"
 echo "PURPOSE   : System prechecks before application deployment"
 echo "--------------------------------------------------------------------------------"
 
+echo "######## checking Directory #######"
 DIR="logs"
 
 if [ -d "$DIR" ]; then
@@ -13,7 +15,8 @@ if [ -d "$DIR" ]; then
 else
   echo "Directory missing: creating $DIR"
   mkdir "$DIR"
-  if [ $? -ne 0 ]; then
+# lets check directory created or not
+  if [ $? -ne 0 ]; then    
     echo "Directory check: FAILED"
     exit 1
   fi
