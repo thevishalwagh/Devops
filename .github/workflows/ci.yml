@@ -3,7 +3,7 @@ name : Simple CI
 on:
   push:
     branches:
-      - main
+      - feature-login
 
 jobs:
   build:
