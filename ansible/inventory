@@ -1,4 +1,0 @@
-[ubuntu2]
-localhost ansible_user=host1 ansible_connection=local
-
-[prod]
