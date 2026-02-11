@@ -6,3 +6,6 @@
 # THis is practice
 #
 #This is MergeExample
+#
+#this is RebaseExample
+#
