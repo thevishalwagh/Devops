@@ -1,38 +1,32 @@
 package com.example;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class AppTest extends TestCase {
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+        private BankAccount account;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+            protected void setUp() {
+                        account = new BankAccount();
+                                account.createAccount("Vishal");
+                                    }
+
+                public void testCreateAccount() {
+                            assertNotNull(account);
+                                }
+
+                    public void testInitialBalance() {
+                                assertEquals(0.0, account.getBalance());
+                                    }
+
+                        public void testDeposit() {
+                                    account.deposit(5000);
+                                            assertEquals(5000.0, account.getBalance());
+                                                }
+
+                            public void testMultipleDeposits() {
+                                        account.deposit(3000);
+                                                account.deposit(2000);
+                                                        assertEquals(5000.0, account.getBalance());
+                                                            }
 }

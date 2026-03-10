@@ -1,0 +1,51 @@
+pipeline {
+    agent any {
+
+        tools {
+            maven 'Maven3'
+        }
+        stages {
+            stage ('Git Checkout') {
+                steps {
+                    echo 'Cloning repository...'
+                    checkout scm
+                }
+            }
+
+            stage ('Build') {
+                steps {
+                    echo 'Building Application...'
+                    sh 'mvn clean package -DskipTests'
+                }
+            }
+            
+            stage ('Test') {
+                steps {
+                    echo 'Running unit tests...'
+                    sh 'mvn test' 
+                }
+            }
+            
+            stage ('Code Review') {
+                steps {
+                    echo 'Code Review Stage - SONARQUBE will be added later'
+                    } 
+            }
+
+            stage ('Deploy') {
+                steps {
+                    echo 'Deploying Application...'
+                }
+            }
+        }
+        
+        post {
+            success {
+                echo 'Pipeline COMPLETED successfully'
+            }
+            failure {
+                echo 'Pipelined FAILED'
+            }
+        }
+    }
+

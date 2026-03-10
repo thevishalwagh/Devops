@@ -21,3 +21,6 @@ venv/
 target/
 *.class
 *.jar
+
+apache-tomcat-9.0.98.tar.gz
+tomcat9/
