@@ -39,7 +39,18 @@ pipeline {
                 expression { currentBuild.currentResult == 'SUCCESS' }
             }
             steps {
-                echo 'Code Review Stage - SonarQube will be added later'
+                dir ('projects/my-jenkins-app') {
+                    withSonarQubeEnv('SonarQube-Local'){
+                sh 'mvn sonar:sonar'
+            }
+        }
+    }
+        
+        stage ('Quality Gate'){
+            steps {
+                timeout (time: 5, unit:'MINUTES'){
+                    waitforQualityGate abortpipeline: true
+                }
             }
         }
 
