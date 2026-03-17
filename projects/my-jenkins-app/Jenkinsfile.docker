@@ -21,12 +21,14 @@ pipeline {
 
          stage ('Test') {
              steps {
-                 echo 'Running Test...'
+                dir ('projects/my-jenkins-app')
+                echo 'Running Test...'
                  sh 'mvn test'
              }
          }
          stage ('Verify Artifact') {
              steps {
+                 dir ('projects/my-jenkins-app')
                  echo 'Listing Artifacts...'
                  sh 'ls -l target'
              }
