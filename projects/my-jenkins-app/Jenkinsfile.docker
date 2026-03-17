@@ -13,25 +13,28 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                dir ('projects/my-jenkins-app')
+                dir ('projects/my-jenkins-app') {
                 echo 'Building application...'
                 sh 'mvn clean package -DskipTests'
             }
          }
+     }
 
          stage ('Test') {
              steps {
-                dir ('projects/my-jenkins-app')
+                dir ('projects/my-jenkins-app') {
                 echo 'Running Test...'
                  sh 'mvn test'
              }
          }
+         }
          stage ('Verify Artifact') {
              steps {
-                 dir ('projects/my-jenkins-app')
+                 dir ('projects/my-jenkins-app') {
                  echo 'Listing Artifacts...'
                  sh 'ls -l target'
              }
+         }
          }
     }
     post {
