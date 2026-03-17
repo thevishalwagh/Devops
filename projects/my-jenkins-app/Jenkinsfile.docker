@@ -52,20 +52,11 @@ pipeline {
          stage ('Deploy') {
              steps {
                  sh '''
-                 echo "---------------------------"
-                 echo "Stoping old container..."
-                 echo "---------------------------"
-                 docker rm -f my-jenkins-app-container || true
 
-                 echo "------------------------------"
-                 echo "Starting NEW container..."
-                 echo "------------------------------"
-                 docker run -d -p 8081:8080 --name
-                 my-jenkins-app-container my-jenkins-app
+                docker rm -f my-jenkins-app-container || true
+                docker run -d -p 8081:8080 --name
+                my-jenkins-app-container my-jenkins-app
 
-                 echo "--------------------------------"
-                 echo "RUNNING CONTAINERS:"
-                 echo "--------------------------------"
                  docker ps
                  '''
              }
