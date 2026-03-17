@@ -54,7 +54,7 @@ pipeline {
                  sh '''
 
                 docker rm -f my-jenkins-app-container || true
-                docker run -d -p 8081:8080 --name my-jenkins-app-container my-jenkins-app
+                docker run -d -p 8083:8080 --name my-jenkins-app-container my-jenkins-app
 
                  docker ps
                  '''
