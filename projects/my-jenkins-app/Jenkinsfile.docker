@@ -1,0 +1,43 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven: 3.9.6-eclipse-temurin-17'
+        }
+    }
+    stages {
+        stage ('Checkout'){
+            steps {
+                echo 'checking out code...'
+                checkout scm
+            }
+        }
+        stage ('Build') {
+            steps {
+                echo 'Building application...'
+                sh 'mvn clean package -DskipTests'
+            }
+         }
+
+         stage ('Test') {
+             steps {
+                 echo 'Running Test...'
+                 sh 'mvn test'
+             }
+         }
+         stage ('Verify Artifact') {
+             steps {
+                 echo 'Listing Artifacts...'
+                 sh 'ls -l target'
+             }
+         }
+    }
+    post {
+        success{
+            echo "Pipeline executed successfully."
+        }
+        failure {
+            echo "Pipeline Failed"
+        }
+    }
+}
+
