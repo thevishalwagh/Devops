@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+        .card h3 {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>DevOps Dashboard</h1>
+        <p>End-to-End CI/CD Pipeline with AWS Cloud Deployment</p>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Application Healthy
+        </div>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Environment</h3>
+            <p>AWS</p>
+        </div>
+
+        <div class="card">
+            <h3>CI/CD</h3>
+            <p>Jenkins</p>
+        </div>
+
+        <div class="card">
+            <h3>Containerization</h3>
+            <p>Docker</p>
+        </div>
+
+        <div class="card">
+            <h3>Infrastructure</h3>
+            <p>Terraform</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Built as a hands-on DevOps learning project
+    </div>
+
+</div>
+
+</body>
+</html>
