@@ -9,8 +9,8 @@ pipeline {
             }
         }
         stage('Test AWS ECR Access') {
-    steps {
-        withCredentials([[
+        steps {
+         withCredentials([[
             $class: 'AmazonWebServicesCredentialsBinding',
             credentialsId: 'aws-wagh'
         ]]) {
