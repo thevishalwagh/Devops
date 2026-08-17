@@ -8,7 +8,21 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage('Test AWS ECR Access') {
+    steps {
+        withCredentials([[
+            $class: 'AmazonWebServicesCredentialsBinding',
+            credentialsId: 'aws-wagh'
+        ]]) {
+            sh '''
+                aws sts get-caller-identity
+                aws ecr describe-repositories \
+                  --repository-names devops-dashboard \
+                  --region ap-south-1
+            '''
+        }
+    }
+}
         stage('Create Virtual Environment') {
             steps {
                 dir('projects/aws-devops-cicd') {
