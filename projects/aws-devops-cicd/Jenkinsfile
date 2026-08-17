@@ -8,21 +8,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Test AWS ECR Access') {
-        steps {
-         withCredentials([[
-            $class: 'AmazonWebServicesCredentialsBinding',
-            credentialsId: 'aws-wagh'
-        ]]) {
-            sh '''
-                aws sts get-caller-identity
-                aws ecr describe-repositories \
-                  --repository-names devops-dashboard \
-                  --region ap-south-1
-            '''
-        }
-    }
-}
+    
         stage('Create Virtual Environment') {
             steps {
                 dir('projects/aws-devops-cicd') {
@@ -48,12 +34,29 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                dir('projects/aws-devops-cicd') {
-                    sh 'docker build -t devops-dashboard:ci .'
-                }
+        stage('Build and Push Docker Image') {
+    steps {
+        dir('projects/aws-devops-cicd') {
+            withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'aws-wagh'
+            ]]) {
+                sh '''
+                    aws ecr get-login-password --region ap-south-1 | \
+                    docker login --username AWS --password-stdin \
+                    093954666101.dkr.ecr.ap-south-1.amazonaws.com
+
+                    docker build -t devops-dashboard:ci .
+
+                    docker tag devops-dashboard:ci \
+                    093954666101.dkr.ecr.ap-south-1.amazonaws.com/devops-dashboard:ci
+
+                    docker push \
+                    093954666101.dkr.ecr.ap-south-1.amazonaws.com/devops-dashboard:ci
+                '''
             }
         }
+    }
+}
     }
 }
